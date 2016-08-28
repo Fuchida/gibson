@@ -5,7 +5,7 @@ ENV POSTS_GIT_REPO_SECRET "THIS IS A SECRET"
 
 RUN mkdir -p /www && \
 	cd www && \
-	git clone https://github.com/snehesht/blog && \
+	git clone https://github.com/Fuchida/gibson && \
 	cd blog && \
 	pip install -r Requirements.in && \
 	cd app && \
