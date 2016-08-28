@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+	{% block body %}
+    <div class="blog_header">
+        <div class="blog_logo">
+        <a href="{{ url_for('index') }}">
+	        <i class="fa fa-keyboard-o fa-4x" aria-hidden="true"></i>
+	    </a>
+        </div>
+    </div>
+    	<br>
+	<div class="all_posts">
+	{% for post in content %}
+				<div class="all_posts_title">
+						<a href="{{ url_for('blog_post',url_slug=post.url) }}">
+							{{ post.title }}
+						</a>
+				</div>
+		<small>{{ post.date }}</small>
+	{% endfor %}
+	</div>
+{% endblock %}

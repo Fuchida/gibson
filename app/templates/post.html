@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="blog_header">
+        <div class="blog_logo">
+
+        <a href="{{ url_for('index') }}">
+            <i class="fa fa-keyboard-o fa-3x" aria-hidden="true"></i>
+        </a>
+
+        </div>
+        <h1>
+            {{ metadata.title }}
+        </h1>
+        <hr>
+    </div>
+    <div class="post_content">
+        {{ content }}
+    </div>
+{% endblock %}
+
+
+
+
+
+
