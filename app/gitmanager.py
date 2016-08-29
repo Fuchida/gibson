@@ -15,7 +15,7 @@ def git_update():
             if current_dir != GIT_REPO_DIR_NAME:
                 print("Changing directory")
                 os.chdir(GIT_REPO_DIR_NAME)
-            subprocess.run(['git', 'pull'])
+            subprocess.call(['git', 'pull'])
             # Sleeps for 10 secs, waits till the pull is completed
             # time.sleep(10)
         else:
@@ -37,7 +37,7 @@ def git_clone():
     """
     try:
         os.chdir(GIT_REPO_DIR_NAME)
-        subprocess.run(['git', 'clone', GIT_REPO_URL])
+        subprocess.call(['git', 'clone', GIT_REPO_URL])
     except Exception as e:
         raise e
     finally:
@@ -60,7 +60,7 @@ def check_repo_exist():
         if current_dir == GIT_REPO_DIR_NAME:
             repo_exists = True
         if repo_exists is False:
-            subprocess.run(['git', 'clone', GIT_REPO_URL])
+            subprocess.call(['git', 'clone', GIT_REPO_URL])
     except Exception as e:
         raise e
     finally:
