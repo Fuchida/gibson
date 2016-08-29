@@ -1,4 +1,4 @@
-from app import app
+from main import app
 from flask import  url_for, redirect, request, render_template
 
 from loader import DataStore
