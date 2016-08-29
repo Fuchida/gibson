@@ -92,7 +92,7 @@ ENV/
 .ropeproject
 
 # Posts directory
-/post
+posts/
 
 # Misc
 dev.env
