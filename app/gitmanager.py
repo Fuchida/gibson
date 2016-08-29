@@ -40,8 +40,6 @@ def git_clone():
         subprocess.call(['git', 'clone', GIT_REPO_URL])
     except Exception as e:
         raise e
-    finally:
-        return 0
 
 
 def check_repo_exist():
@@ -63,5 +61,3 @@ def check_repo_exist():
             subprocess.call(['git', 'clone', GIT_REPO_URL])
     except Exception as e:
         raise e
-    finally:
-        return True
