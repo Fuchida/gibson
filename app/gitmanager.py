@@ -47,17 +47,9 @@ def check_repo_exist():
         Check if git data repo exist
     """
     try:
-        repo_exists = False
-        # List dir
-        for item in os.listdir():
-            # print(item)
-            if item == GIT_REPO_DIR_NAME:
-                repo_exists = True
-        current_dir = os.getcwd().split('/')[-1]
-        # If curr directory is GIT_REPO_DIR_NAME
-        if current_dir == GIT_REPO_DIR_NAME:
-            repo_exists = True
-        if repo_exists is False:
+        if GIT_REPO_DIR_NAME not in os.listdir():
             subprocess.call(['git', 'clone', GIT_REPO_URL])
+        else:
+            return False
     except Exception as e:
         raise e
