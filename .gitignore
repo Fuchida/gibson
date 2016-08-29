@@ -93,3 +93,6 @@ ENV/
 
 # Posts directory
 /post
+
+# Misc
+dev.env
