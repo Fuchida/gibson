@@ -20,7 +20,7 @@ def reload_data():
     When triggered by Github repo webhook, verifies if the request is valid and if it is,
      the data stored inside the git repo is pulled down and the DataStore is reloaded
     """
-    if request.headers.get('X-Hub-Signature', None) != None:
+    if request.headers.get('X-Hub-Signature', None) is not None:
         gh_sha1 = request.headers.get('X-Hub-Signature')
         gh_payload = request.data
         secret = GIT_REPO_SECRET
