@@ -25,7 +25,7 @@ POSTS_GIT_REPO_SECRET = None
 
 ```sh
   >> python src/app.py
-  ....
+  ...
   * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
 
