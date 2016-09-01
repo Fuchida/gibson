@@ -11,8 +11,10 @@ my old blog [fuchida/blog](https://github.com/Fuchida/Archive/tree/master/blog.f
   >> pip install -r requirements.txt
 ```
 
-Set repository url for your posts and secrete password repo in `config.py`
+Set repository url for your posts and secrete password in `config.py`
 or set them as environment variables.
+
+Also be sure to point your POST repo webhook setting to youblog.com/update
 
 ```python
 POSTS_GIT_REPO = None
