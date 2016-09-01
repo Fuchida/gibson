@@ -11,7 +11,7 @@ my old blog [fuchida/blog](https://github.com/Fuchida/Archive/tree/master/blog.f
   >> pip install -r requirements.txt
 ```
 
-Set Posts reository url and secrete password repo in `config.py`
+Set repository url for your posts and secrete password repo in `config.py`
 or set them as environment variables.
 
 ```python
