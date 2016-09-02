@@ -1,8 +1,11 @@
 # Gibson
-Minimum effort git based blogging.
+Minimum effort developer blogging.
 
 Building on the work from [snehesht/blog](https://github.com/snehesht/blog) and the styling from
 my old blog [fuchida/blog](https://github.com/Fuchida/Archive/tree/master/blog.fuchida.me).
+
+Gibson uses markdown files and git to build a simple blog. A developer that just want to
+to push to a repo to update their blog, Gibson should be an ideal option.
 
 ### Installation
 
@@ -11,7 +14,7 @@ my old blog [fuchida/blog](https://github.com/Fuchida/Archive/tree/master/blog.f
   >> pip install -r requirements.txt
 ```
 
-Set repository url for your posts and secrete password in `config.py`
+Set the repository url with your .md posts and secrete password in `config.py`
 or set them as environment variables.
 
 Also be sure to point your POST repo webhook setting to youblog.com/update
