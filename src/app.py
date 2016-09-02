@@ -14,7 +14,7 @@ app.wsgi_app = ProxyFix(app.wsgi_app)
 DS = DataStore()
 
 
-@app.route('/_reload', methods=['POST'])
+@app.route('/update', methods=['POST'])
 def reload_data():
     """
     When triggered by Github repo webhook, verifies if the request is valid and if it is,
