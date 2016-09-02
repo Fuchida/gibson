@@ -34,3 +34,4 @@ POSTS_GIT_REPO_SECRET = None
   * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
 
+![Screenshot](https://github.com/Fuchida/gibson/blob/master/docs/images/main_page.png)
