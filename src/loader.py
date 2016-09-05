@@ -4,11 +4,11 @@ import re
 import markdown
 from flask import Markup
 
-from config import GIT_REPO_DIR_NAME, ACCEPTED_FILE_FORMATS
-from gitmanager import git_update, check_repo_exist
+from config import GIT_REPO_DIR_PATH, ACCEPTED_FILE_FORMATS
+from gitmanager import git_update, check_local_repo
 
 # Global Config
-DATA_DIR = GIT_REPO_DIR_NAME
+DATA_DIR_PATH = GIT_REPO_DIR_PATH
 FILE_DOT_MD_REGEX = ACCEPTED_FILE_FORMATS
 
 
@@ -21,7 +21,7 @@ class DataStore(object):
         super(DataStore, self).__init__()
         self.data = {}
         self.metadata = []
-        check_repo_exist()
+        check_local_repo()
         self.load_files()
 
     def load_files(self):
@@ -30,12 +30,12 @@ class DataStore(object):
         """
         print("loading files ...")
         data = {}
-        files_in_dir = os.listdir(DATA_DIR)
+        files_in_dir = os.listdir(DATA_DIR_PATH)
         for f in files_in_dir:
             # safegaurd to load only *.md files
             if re.match(FILE_DOT_MD_REGEX, f) is not None:
                 # Read each file and save it's content in a dict with key as filename and value as content
-                with open(DATA_DIR + "/" + f) as fp:
+                with open(DATA_DIR_PATH + "/" + f) as fp:
                         metadata = {}
                         mkd = markdown.Markdown(extensions=['markdown.extensions.meta'])
 
@@ -70,7 +70,7 @@ class DataStore(object):
 
     def reload_data(self):
         """
-            Reload data from DATA_DIR, usually called when changes are made
+            Reload data from DATA_DIR_PATH, usually called when changes are made
         """
         self.load_files()
 

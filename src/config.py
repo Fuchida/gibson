@@ -11,7 +11,11 @@ POSTS_GIT_REPO_SECRET = None
 # Git Repo Config
 # Fetched via environmental variables
 GIT_REPO_URL = os.environ.get('POSTS_GIT_REPO', POSTS_GIT_REPO)
-GIT_REPO_DIR_NAME = GIT_REPO_URL.split('/')[-1].replace('.git', '')
+
+POSTS_REPO_NAME = GIT_REPO_URL.split('/')[-1].replace('.git', '')
+SOURCE_DIRECTORY = os.getcwd()
+GIT_REPO_DIR_PATH = os.path.join(SOURCE_DIRECTORY, POSTS_REPO_NAME)
+
 GIT_REPO_SECRET = os.environ.get('POSTS_GIT_REPO_SECRET', POSTS_GIT_REPO_SECRET)
 
 # Server Config
