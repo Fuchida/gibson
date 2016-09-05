@@ -14,8 +14,8 @@ to push to a repo to update their blog, Gibson should be an ideal option.
   >> pip install -r requirements.txt
 ```
 
-Set the repository url with your .md posts and secrete password in `config.py`
-or set them as environment variables.
+In `config.py` set `POSTS_GIT_REPO` to point to the Github repo with your posts and set `POSTS_GIT_REPO_SECRET`
+with the password for the webhook service. These can also be set as environment variables.
 
 Also be sure to point your POST repo webhook setting to youblog.com/update
 
