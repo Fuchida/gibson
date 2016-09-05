@@ -10,7 +10,7 @@ def git_update():
     try:
         if check_local_repo():
             os.chdir(GIT_REPO_DIR_PATH)
-            subprocess.call(['git', 'pull'])
+            git_pull(GIT_REPO_DIR_PATH)
             os.chdir(SOURCE_DIRECTORY)
         else:
             print('Some problem with the repo, repo doesnt exist')
@@ -18,18 +18,22 @@ def git_update():
         raise e
 
 
-def get_current_dir():
-    tmp = os.getcwd().split('/')
-    return tmp[-1]
-
-
-def git_clone():
+def git_pull(path):
     """
-        GIT DATA repo doesn't exist, pull the repo
+        Run git clone at path
     """
     try:
-        os.chdir(GIT_REPO_DIR_PATH)
-        subprocess.call(['git', 'clone', GIT_REPO_URL])
+        subprocess.call(['git', 'clone', path])
+    except Exception as e:
+        raise e
+
+
+def git_clone(path):
+    """
+        Run git clone at path
+    """
+    try:
+        subprocess.call(['git', 'clone', path])
     except Exception as e:
         raise e
 
@@ -41,7 +45,7 @@ def check_local_repo():
 
     try:
         if POSTS_REPO_NAME not in os.listdir():
-            subprocess.call(['git', 'clone', GIT_REPO_URL])
+            git_clone(GIT_REPO_URL)
         else:
             return True
     except Exception as e:
