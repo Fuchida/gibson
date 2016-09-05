@@ -4,7 +4,7 @@ Minimum effort developer blogging.
 Building on the work from [snehesht/blog](https://github.com/snehesht/blog) and the styling from
 my old blog [fuchida/blog](https://github.com/Fuchida/Archive/tree/master/blog.fuchida.me).
 
-Gibson uses markdown files and git to build a simple blog. A developer that just want to
+Gibson uses markdown files and git to build a simple blog. For developer who wants
 to push to a repo to update their blog, Gibson should be an ideal option.
 
 ### Installation
