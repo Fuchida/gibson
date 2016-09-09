@@ -37,7 +37,9 @@ class DataStore(object):
                 # Read each file and save it's content in a dict with key as filename and value as content
                 with open(DATA_DIR_PATH + "/" + f) as fp:
                         metadata = {}
-                        mkd = markdown.Markdown(extensions=['markdown.extensions.meta'])
+                        mkd = markdown.Markdown(extensions=['markdown.extensions.meta',
+                                                            'markdown.extensions.fenced_code',
+                                                            'markdown.extensions.codehilite'])
 
                         file_name = f.replace(".md", "")
                         value = fp.read()
