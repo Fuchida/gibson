@@ -5,8 +5,8 @@ import os
 # reStructuredText not accepted for now
 ACCEPTED_FILE_FORMATS = "^.*\.md$"  # .md
 
-POSTS_GIT_REPO = 'https://github.com/Fuchida/posts.git'
-POSTS_GIT_REPO_SECRET = '1qaz@WSX'
+POSTS_GIT_REPO = None
+POSTS_GIT_REPO_SECRET = None
 
 # Git Repo Config
 # Fetched via environmental variables
