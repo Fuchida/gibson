@@ -8,9 +8,10 @@ def git_update():
         Update the GIT database repo
     """
     try:
+        import pdb;pdb.set_trace()
         if check_local_repo():
             os.chdir(GIT_REPO_DIR_PATH)
-            git_pull(GIT_REPO_DIR_PATH)
+            git_pull()
             os.chdir(SOURCE_DIRECTORY)
         else:
             print('Some problem with the repo, repo doesnt exist')
@@ -18,12 +19,12 @@ def git_update():
         raise e
 
 
-def git_pull(path):
+def git_pull():
     """
-        Run git clone at path
+        Run git pull current working path
     """
     try:
-        subprocess.call(['git', 'clone', path])
+        subprocess.call(['git', 'pull'])
     except Exception as e:
         raise e
 
