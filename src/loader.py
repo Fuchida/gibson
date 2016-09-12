@@ -21,7 +21,7 @@ def git_update():
 
 def git_pull():
     """
-        Run git clone at path
+        Run git pull current working path
     """
     try:
         subprocess.call(['git', 'pull'])
