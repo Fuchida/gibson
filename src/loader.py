@@ -84,5 +84,5 @@ class DataStore(object):
             git_update()
         except Exception:
             print("Reload failed")
-        finally:
+        else:
             self.reload_data()
