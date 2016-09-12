@@ -1,52 +1,88 @@
-import subprocess
 import os
-from config import GIT_REPO_DIR_PATH, GIT_REPO_URL, POSTS_REPO_NAME, SOURCE_DIRECTORY
+import re
+
+import markdown
+from flask import Markup
+
+from config import GIT_REPO_DIR_PATH, ACCEPTED_FILE_FORMATS
+from gitmanager import git_update, check_local_repo
+
+# Global Config
+DATA_DIR_PATH = GIT_REPO_DIR_PATH
+FILE_DOT_MD_REGEX = ACCEPTED_FILE_FORMATS
 
 
-def git_update():
+class DataStore(object):
     """
-        Update the GIT database repo
+        Class to access data
     """
-    try:
-        if check_local_repo():
-            os.chdir(GIT_REPO_DIR_PATH)
-            git_pull()
-            os.chdir(SOURCE_DIRECTORY)
+
+    def __init__(self):
+        super(DataStore, self).__init__()
+        self.data = {}
+        self.metadata = []
+        check_local_repo()
+        self.load_files()
+
+    def load_files(self):
+        """
+        Load files from data_dir with markdown format and return a map with key as filename and value as contents
+        """
+        print("loading files ...")
+        data = {}
+        files_in_dir = os.listdir(DATA_DIR_PATH)
+        for f in files_in_dir:
+            # safegaurd to load only *.md files
+            if re.match(FILE_DOT_MD_REGEX, f) is not None:
+                # Read each file and save it's content in a dict with key as filename and value as content
+                with open(DATA_DIR_PATH + "/" + f) as fp:
+                        metadata = {}
+                        mkd = markdown.Markdown(extensions=['markdown.extensions.meta',
+                                                            'markdown.extensions.fenced_code',
+                                                            'markdown.extensions.codehilite'])
+
+                        file_name = f.replace(".md", "")
+                        value = fp.read()
+
+                        parsed_mkd = mkd.convert(value)
+                        data[file_name] = Markup(parsed_mkd)
+
+                        for key, value in mkd.Meta.items():
+                            metadata[key] = ' '.join(value)
+                            metadata['file'] = file_name
+                            metadata['url'] = file_name
+
+                        # Only appends when we were able to extract metadata
+                        if metadata:
+                            self.metadata.append(metadata)
+        self.data = data
+
+    def get_data(self):
+        """
+            Function to access data, this is usually called
+        """
+        return self.data
+
+    def get_metadata(self):
+        """
+            Function to fetch metadata
+        """
+        self.metadata.sort(key=lambda item: item['date'], reverse=True)
+        return self.metadata
+
+    def reload_data(self):
+        """
+            Reload data from DATA_DIR_PATH, usually called when changes are made
+        """
+        self.load_files()
+
+    def reload(self):
+        """
+            Reload data
+        """
+        try:
+            git_update()
+        except Exception:
+            print("Reload failed")
         else:
-            print('Some problem with the repo, repo doesnt exist')
-    except Exception as e:
-        raise e
-
-
-def git_pull():
-    """
-        Run git pull on current working directory
-    """
-    try:
-        subprocess.call(['git', 'pull'])
-    except Exception as e:
-        raise e
-
-
-def git_clone(path):
-    """
-        Run git clone at path
-    """
-    try:
-        subprocess.call(['git', 'clone', path])
-    except Exception as e:
-        raise e
-
-
-def check_local_repo():
-    """
-        Check if git data repo exist
-    """
-
-    try:
-        if POSTS_REPO_NAME not in os.listdir():
-            git_clone(GIT_REPO_URL)
-        else:
-            return True
-    except Exception as e:
-        raise e
+            self.reload_data()
