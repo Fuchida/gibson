@@ -8,7 +8,6 @@ def git_update():
         Update the GIT database repo
     """
     try:
-        import pdb;pdb.set_trace()
         if check_local_repo():
             os.chdir(GIT_REPO_DIR_PATH)
             git_pull()
@@ -21,7 +20,7 @@ def git_update():
 
 def git_pull():
     """
-        Run git pull current working path
+        Run git pull on current working directory
     """
     try:
         subprocess.call(['git', 'pull'])
