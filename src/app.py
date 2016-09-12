@@ -1,4 +1,4 @@
-from flask import Flask, url_for, redirect, request, render_template
+from flask import Flask, url_for, redirect, request, render_template, abort
 from werkzeug.contrib.fixers import ProxyFix
 
 from config import DEBUG_STATUS, HOST, PORT, GIT_REPO_SECRET
@@ -26,10 +26,10 @@ def reload_data():
         secret = GIT_REPO_SECRET
         if hash_check(gh_sha1, gh_payload, secret):
             DS.reload()
-        return redirect(url_for('index'))
+        return 'Update successful'
     else:
         print('Recieved a post request to reload, but not from github')
-        return redirect(url_for('index'))
+        return abort(500)
 
 
 @app.route('/')
