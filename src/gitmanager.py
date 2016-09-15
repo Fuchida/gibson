@@ -8,7 +8,6 @@ def git_update():
         Update the GIT database repo
     """
     try:
-        import pdb;pdb.set_trace()
         if check_local_repo():
             os.chdir(GIT_REPO_DIR_PATH)
             git_pull()
