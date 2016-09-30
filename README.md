@@ -10,7 +10,7 @@ to push to a repo to update their blog, Gibson should be an ideal option.
 ### Installation
 
 ```sh
-  >> Git clone https://github.com/Fuchida/gibson.git
+  >> git clone https://github.com/Fuchida/gibson.git
   >> pip install -r requirements.txt
 ```
 
