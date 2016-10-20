@@ -1,4 +1,4 @@
-# Gibson
+# Gibson [![Code Health](https://landscape.io/github/Fuchida/gibson/master/landscape.svg?style=flat)](https://landscape.io/github/Fuchida/gibson/master)
 Minimum effort developer blogging.
 
 Gibson uses markdown files and git to build a simple blog. For developers who wants
