@@ -10,9 +10,6 @@ from helper import hash_check
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 
-# Initilize Loading files from git repo
-DS = DataStore()
-
 
 @app.route('/update', methods=['POST'])
 def reload_data():
@@ -25,6 +22,7 @@ def reload_data():
         gh_payload = request.data
         secret = GIT_REPO_SECRET
         if hash_check(gh_sha1, gh_payload, secret):
+            DS = DataStore()
             DS.reload()
         return 'Update successful'
     else:
@@ -46,6 +44,7 @@ def blog_index_page():
     """
         Index of all blogposts
     """
+    DS = DataStore()
     data = DS.get_metadata()
     return render_template('posts.html', content=data)
 
@@ -53,6 +52,8 @@ def blog_index_page():
 @app.route('/blog/<url_slug>/')
 @app.route('/blog/<url_slug>')
 def blog_post(url_slug):
+
+    DS = DataStore()
     data = DS.get_data()
     metadata = DS.get_metadata()
     bp = {}
@@ -70,6 +71,7 @@ def blog_post(url_slug):
         content = data[bp['file']]
 
         return render_template('post.html', content=content, metadata=bp)
+
 
 if __name__ == "__main__":
     app.run(debug=DEBUG_STATUS, host=HOST, port=PORT)
