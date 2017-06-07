@@ -31,18 +31,11 @@ def reload_data():
 
 
 @app.route('/')
-def index():
-    """
-    Index view, a.k.a /root
-    """
-    return redirect('/blog')
-
-
 @app.route('/blog/')
 @app.route('/blog')
-def blog_index_page():
+def index():
     """
-        Index of all blogposts
+        All blogposts
     """
     DS = DataStore()
     data = DS.get_metadata()
@@ -63,7 +56,7 @@ def blog_post(url_slug):
 
     if not bp:
         # No such blogpost
-        return redirect(url_for('blog_index_page'))
+        return redirect(url_for('index'))
     else:
         # TODO: Decide how to handle multiple blog posts with the same title
             # Idea: During data load and throw an error if duplicate title is found
