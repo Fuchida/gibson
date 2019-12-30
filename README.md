@@ -7,8 +7,6 @@ to push to a repo to update their blog, Gibson should be an ideal option.
 Gibson was built from the work of [snehesht](https://github.com/snehesht/blog) and the styling from
 my old blog [fuchida/blog](https://github.com/Fuchida/Archive/tree/master/blog.fuchida.me).
 
-[Here](http://blog.fuchida.me) is my current blog, running on Gibson.
-
 ### Installation
 
 ```sh
