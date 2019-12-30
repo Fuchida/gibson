@@ -97,3 +97,4 @@ posts/
 # Misc
 sourceme
 .DS_Store
+.vscode/
